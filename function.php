@@ -1,5 +1,8 @@
 <?php 
 
+
+// Connexion Base de donnée 
+
 function dbConnect(){
     try
     {
@@ -12,13 +15,17 @@ function dbConnect(){
     }
 }
 
+// Fonction pour afficher la base de donnée dans le tableau
+
 function showAll(){
     $pdoStat = dbConnect()->prepare('SELECT * FROM `action` ');
     $executeIsOK=$pdoStat->execute();
     $tenant=$pdoStat->fetchAll();
     return $tenant;
 }
-    
+ 
+// Fonction d'ajout des tâches
+
 function addTask(){
 
     $add=dbConnect()->prepare('INSERT INTO `action` (id,`date`, `type`, `floor`) VALUES (:id,:date_, :type_, :floor_) ');
@@ -34,5 +41,36 @@ function addTask(){
               echo 'Veuillez ressayer.';
           }
           }
+
+ // Supprimer une tâche 
+
+ function removeTask($idtenant){
+
+    $remove=dbConnect()->prepare('DELETE FROM `action` WHERE id=:id');
+    $remove->bindParam(':id',$idtenant, PDO::PARAM_INT);
+
+    $remove = $remove->execute();
+    if($remove){
+        echo 'votre enregistrement a bien été supprimé';
+        
+        $filename='index.php';
+        if (!headers_sent())
+        header('Location: '.$filename);
+        else {
+        echo '<script type="text/javascript">';
+        echo 'window.location.href="'.$filename.'";';
+        echo '</script>';
+        echo '<noscript>';
+        echo '<meta http-equiv="refresh" content="0;url='.$filename.'" />';
+        echo '</noscript>';
+        }
+        
+    
+    } else {
+        echo 'Veuillez recommencer svp, une erreur est survenue';
+    }
+ }
+
+    
 
 ?>

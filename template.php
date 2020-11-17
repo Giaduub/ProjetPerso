@@ -23,6 +23,6 @@
 
         <?= $content ?>
 
-<?php require ('footerView.php') ?>
+
     </body>
 </html>

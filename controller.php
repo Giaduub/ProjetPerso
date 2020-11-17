@@ -10,3 +10,5 @@
  <?php if(isset($_GET['add2']) && !empty($_GET['date']) && !empty($_GET['type']) && !empty($_GET['floor'])){
         addTask();
     } ?>
+
+    

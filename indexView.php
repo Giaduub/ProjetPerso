@@ -43,12 +43,15 @@
     </tr>
   </tbody>
   <?php endforeach; ?>
-  <?php require ('add.php')?></table></form>
+  <?php require ('controller.php')?></table></form>
   
+  
+
+
+<div class="container">
+<?php require ('historiqueControl.php')?>
 </div>
 </div>
-
-
-
+</div>
 <?php $content = ob_get_clean(); ?>
 <?php require('template.php'); ?>

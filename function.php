@@ -71,6 +71,39 @@ function addTask(){
     }
  }
 
+ // Afficher par étage 
+
+ function showFloor(){
+
+     $floor_historik = $_GET['floor'];
+     $type_historik = $_GET['type'];
+     $date_historik = $_GET['date'];
+
+     $recup= dbConnect()->prepare('SELECT `type`,`date` FROM `action` WHERE `floor`=:floors ');
+     $recup->bindParam(':floors', $floor_historik);
+     $recup->execute();
+
+     while($data = $recup->fetch())
+     {
+         echo '<table class="table table-dark col-6 justify-align-center">
+         <thead>
+           <tr>
+              
+             <th scope="col">Date</th>
+             <th scope="col">Type</th>
+             <th></th>
+           </tr>
+         </thead>
+         <tbody>';
+         echo '<td>'.$data['date'].'</td>
+         <td>'.$data['type'].'</td>';
+     }
+
+ }
+
+ // Afficher par date
+
+
     
 
 ?>

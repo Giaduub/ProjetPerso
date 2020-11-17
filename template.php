@@ -20,9 +20,9 @@
     <body>
         <?php require ('headerView.php') ?>
         <h1>Mon panneau d'administration</h1>
-
+        
         <?= $content ?>
 
-
+<?php require ('footerView.php') ?>
     </body>
 </html>

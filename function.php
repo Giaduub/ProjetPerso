@@ -18,7 +18,7 @@ function dbConnect(){
 // Fonction pour afficher la base de donnée dans le tableau
 
 function showAll(){
-    $pdoStat = dbConnect()->prepare('SELECT * FROM `action` ');
+    $pdoStat = dbConnect()->prepare('SELECT * FROM `action` ORDER BY `date` ');
     $executeIsOK=$pdoStat->execute();
     $tenant=$pdoStat->fetchAll();
     return $tenant;
@@ -28,8 +28,7 @@ function showAll(){
 
 function addTask(){
 
-    $add=dbConnect()->prepare('INSERT INTO `action` (id,`date`, `type`, `floor`) VALUES (:id,:date_, :type_, :floor_) ');
-    $add->bindParam(':id', $_GET['id'],PDO::PARAM_INT);
+    $add=dbConnect()->prepare('INSERT INTO `action` (`date`, `type`, `floor`) VALUES (:date_, :type_, :floor_) ');
     $add->bindParam(':date_', $_GET['date'],PDO::PARAM_STR);
     $add->bindParam(':type_', $_GET['type'],PDO::PARAM_STR);
     $add->bindParam(':floor_', $_GET['floor'],PDO::PARAM_INT);
@@ -76,8 +75,6 @@ function addTask(){
  function showFloor(){
 
      $floor_historik = $_GET['floor'];
-     $type_historik = $_GET['type'];
-     $date_historik = $_GET['date'];
 
      $recup= dbConnect()->prepare('SELECT `type`,`date` FROM `action` WHERE `floor`=:floors ');
      $recup->bindParam(':floors', $floor_historik);
@@ -96,14 +93,55 @@ function addTask(){
          </thead>
          <tbody>';
          echo '<td>'.$data['date'].'</td>
-         <td>'.$data['type'].'</td>';
+         <td>'.$data['type'].'</td></tbody></table>';
      }
 
  }
 
  // Afficher par date
-
-
+ function showByDate(){
+    $date_ = $_GET['date'];
     
+    
+
+    $recup= dbConnect()->prepare('SELECT `type`,`floor` FROM `action` WHERE `date`=:date_ ');
+    $recup->bindParam(':date_', $date_);
+    $recup->execute();
+
+    while($data = $recup->fetch())
+    {
+        echo '<table class="table table-dark col-6 justify-align-center">
+        <thead>
+          <tr>
+             
+            <th scope="col">Type</th>
+            <th scope="col">Etage</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>';
+        echo '<td>'.$data['type'].'</td>
+        <td>'.$data['floor'].'</td></tbody></table>';
+    }
+
+}
+
+//Modifier tâche
+
+function editTask(){
+    $edit_task= dbConnect()->prepare('UPDATE `action` SET `type`=:type_, `date`=:date_, `floor`=:floor_ WHERE id=:id_');
+    $edit_task->bindParam(':id_',$_GET['id_'], PDO::PARAM_INT);
+    $edit_task->bindParam(':type_',$_GET['type_'], PDO::PARAM_STR);
+    $edit_task->bindParam(':date_',$_GET['date_'], PDO::PARAM_STR);
+    $edit_task->bindParam(':floor_',$_GET['floor_'], PDO::PARAM_INT);
+
+    $edit_task= $edit_task->execute();
+
+     if($edit_task){
+         echo 'Votre engregistrement à bien été modifié';
+     } else {
+         echo 'Veuillez recommencer svp.';
+     }
+    }
 
 ?>

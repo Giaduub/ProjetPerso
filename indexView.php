@@ -26,10 +26,6 @@
 
   <?php $tenant=showAll();?>
 
-  <?php if(isset($_GET['remove']) && $_GET['remove']=="remove" && isset($_GET['idasupr'])){
-      removeTask($_GET['idasupr']);
-  }?>
-
   <?php foreach($tenant as $tenant): ?>
     <tr>
       <td><?= $tenant['date']?></td>
@@ -45,13 +41,17 @@
   <?php endforeach; ?>
   <?php require ('controller.php')?></table></form>
   
-  
+ 
+ 
 
 
 <div class="container">
 <?php require ('historiqueControl.php')?>
 </div>
 </div>
-</div>
+</div>  
+
+
+
 <?php $content = ob_get_clean(); ?>
 <?php require('template.php'); ?>

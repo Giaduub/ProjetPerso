@@ -130,7 +130,7 @@ function addTask(){
 
 function editTask(){
     $edit_task= dbConnect()->prepare('UPDATE `action` SET `type`=:type_, `date`=:date_, `floor`=:floor_ WHERE id=:id_');
-    $edit_task->bindParam(':id_',$_GET['id_'], PDO::PARAM_INT);
+    $edit_task->bindParam(':id_',$_GET['id'], PDO::PARAM_INT);
     $edit_task->bindParam(':type_',$_GET['type_'], PDO::PARAM_STR);
     $edit_task->bindParam(':date_',$_GET['date_'], PDO::PARAM_STR);
     $edit_task->bindParam(':floor_',$_GET['floor_'], PDO::PARAM_INT);
@@ -143,5 +143,13 @@ function editTask(){
          echo 'Veuillez recommencer svp.';
      }
     }
+
+ // Table tâche à effectué 
+ function taskShow(){
+    $pdoStat = dbConnect()->prepare('SELECT * FROM `task` ORDER BY `date` ');
+    $executeIsOK=$pdoStat->execute();
+    $task=$pdoStat->fetchAll();
+    return $task;
+ }
 
 ?>

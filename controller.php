@@ -12,7 +12,7 @@
 
  <?php //Ajout ligne modifié
  if(isset($_GET['edit']))
- echo'<td><input type="text" name="id_" placeholder="'.$tenant['id'].'"></td>
+ echo'<td><input type="text" name="id" placeholder="'.$tenant['id'].'"></td>
       <td><input type="date" name="date_" placeholder="'.$tenant['date'].'"></td>
       <td><input type="text" name="type_" placeholder="'.$tenant['type'].'"></td>
       <td><input type="text" name="floor_" placeholder="'.$tenant['floor'].'"></td>
@@ -20,7 +20,7 @@
  ?>
 
 <?php //Modifié
-if(isset($_GET['edit2']) && !empty($_GET['id_']) && !empty($_GET['date_']) && !empty($_GET['type_']) && !empty($_GET['floor_'])){
+if(isset($_GET['edit2']) && !empty($_GET['id']) && !empty($_GET['date_']) && !empty($_GET['type_']) && !empty($_GET['floor_'])){
     editTask();
 }?>
  

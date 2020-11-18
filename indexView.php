@@ -40,10 +40,37 @@
   </tbody>
   <?php endforeach; ?>
   <?php require ('controller.php')?></table></form>
-  
- 
- 
 
+<?php $task=taskShow();?>
+  
+  <?php $tenant=showAll();?>
+   
+  <table class="table table-dark  ml-1 col-5 justify-align-center">
+  <thead>
+    <tr>
+       <th></th>
+      <th scope="col">Date</th>
+      <th scope="col">Type</th>
+      <th scope="col">Etage</th>
+      <th></th>
+      <th></th> 
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+ 
+<?php foreach($task as $task): ?>
+    <tr>
+    <td><input type="hidden" name="idasupr" value="<?= $task['id']?>"></td>
+      <td><?= $task['date']?></td>
+      <td><?= $task['type']?></td>
+      <td><?= $task['etage']?></td>
+      <form method="GET">
+      <td><button>Valider</button></td>
+    </tr>
+  </tbody>
+  <?php endforeach; ?>
+</table></form>
 
 <div class="container">
 <?php require ('historiqueControl.php')?>

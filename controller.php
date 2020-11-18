@@ -11,7 +11,7 @@
  ?>
 
  <?php //Ajout ligne modifié
- if(isset($_GET['edit']))
+ if(isset($_GET['edit']) && isset($_GET['idasupr']))
  echo'<td><input type="text" name="id" placeholder="'.$tenant['id'].'"></td>
       <td><input type="date" name="date_" placeholder="'.$tenant['date'].'"></td>
       <td><input type="text" name="type_" placeholder="'.$tenant['type'].'"></td>

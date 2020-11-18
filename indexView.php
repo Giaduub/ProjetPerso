@@ -32,7 +32,7 @@
       <td><?= $tenant['type']?></td>
       <td><?= $tenant['floor']?></td>
       <form method="GET">
-      <td><input type="text" name="idasupr" value="<?= $tenant['id']?>"></td>
+      <td><input type="hidden" name="idasupr" value="<?= $tenant['id']?>"></td>
       <td><button type="submit" value="remove" name="remove">Supprimer</button></td> 
       <td><button type="submit" value="edit" name="edit">Modifier</button></td>
  </form>

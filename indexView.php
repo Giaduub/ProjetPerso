@@ -27,19 +27,19 @@
   <?php $tenant=showAll();?>
 
   <?php foreach($tenant as $tenant): ?>
-    <tr>
+    <tr> 
       <td><?= $tenant['date']?></td>
       <td><?= $tenant['type']?></td>
       <td><?= $tenant['floor']?></td>
       <form method="GET">
-      <td><input type="hidden" name="idasupr" value="<?= $tenant['id']?>"></td>
+      <td><input type="text" name="idasupr" value="<?= $tenant['id']?>"></td>
       <td><button type="submit" value="remove" name="remove">Supprimer</button></td> 
       <td><button type="submit" value="edit" name="edit">Modifier</button></td>
- 
+ </form>
     </tr>
   </tbody>
   <?php endforeach; ?>
-  <?php require ('controller.php')?></table></form>
+ <?php require ('controller.php')?></table>
 
 <?php $task=taskShow();?>
   
@@ -60,18 +60,21 @@
   <tbody>
  
 <?php foreach($task as $task): ?>
-    <tr>
-    <td><input type="hidden" name="idasupr" value="<?= $task['id']?>"></td>
+   <form method="GET"> <tr>
+    <td><input type="hidden" name="idAdd" value="<?= $task['id']?>"></td>
       <td><?= $task['date']?></td>
+      <input type="hidden" name="date" value="<?= $task['date']?>"></td>
       <td><?= $task['type']?></td>
+      <input type="hidden" name="type" value="<?= $task['type']?>"></td>
       <td><?= $task['etage']?></td>
-      <form method="GET">
-      <td><button>Valider</button></td>
+      <input type="hidden" name="etage" value="<?= $task['etage']?>"></td>
+      
+      <td><button type="submit" value="addtab" name="addtab">Valider</button></td>
     </tr>
-  </tbody>
-  <?php endforeach; ?>
-</table></form>
+  </tbody></form>
 
+  <?php endforeach; ?>
+</table>
 <div class="container">
 <?php require ('historiqueControl.php')?>
 </div>

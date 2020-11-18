@@ -152,6 +152,48 @@ function editTask(){
     return $task;
  }
 
- // 
+ // Ajout 2e tab
+ function addTab(){
+    $addtab=dbConnect()->prepare('INSERT INTO `action` (`date`, `type`, `floor`) VALUES (:date_, :type_, :floor_) ');
+    $addtab->bindParam(':date_', $_GET['date'],PDO::PARAM_STR);
+    $addtab->bindParam(':type_', $_GET['type'],PDO::PARAM_STR);
+    $addtab->bindParam(':floor_', $_GET['etage'],PDO::PARAM_INT);
+    $plus= $addtab->execute();
+
+          if($plus){
+              echo 'Cette action à bien été ajoutée.';
+          }else{
+              echo 'Veuillez ressayer.';
+          }
+          }
+
+          
+          function removeTab($idtask){
+
+            $remove=dbConnect()->prepare('DELETE FROM `task` WHERE id=:id');
+            $remove->bindParam(':id',$idtask, PDO::PARAM_INT);
+        
+            $remove = $remove->execute();
+            if($remove){
+                echo 'votre enregistrement a bien été supprimé';
+
+                $filename='index.php';
+                if (!headers_sent())
+                header('Location: '.$filename);
+                else {
+                echo '<script type="text/javascript">';
+                echo 'window.location.href="'.$filename.'";';
+                echo '</script>';
+                echo '<noscript>';
+                echo '<meta http-equiv="refresh" content="0;url='.$filename.'" />';
+                echo '</noscript>';
+                }
+                
+            
+            } else {
+                echo 'Veuillez recommencer svp, une erreur est survenue';
+            }
+            
+        }
 
 ?>

@@ -41,8 +41,8 @@ if(isset($_GET['remove']) && $_GET['remove']=="remove" && isset($_GET['idasupr']
   }?>
 
   <?php //Add tab
-  if(isset($_GET['addtab']) && !empty($_GET['type']) && !empty($_GET['date']) && !empty($_GET['etage'])){
-      addTab() ;
+  if(isset($_GET['addtab']) &&  !empty($_GET['type']) && !empty($_GET['date']) && !empty($_GET['etage'])){
+      addTab() ; removeTab($_GET['idAdd']) ;
 
     //   if(isset(addTab())){
     //       removeTask();

@@ -43,7 +43,7 @@
 
 <?php $task=taskShow();?>
   
-  <?php $tenant=showAll();?>
+  
    
   <table class="table table-dark  ml-1 col-5 justify-align-center">
   <thead>

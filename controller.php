@@ -11,12 +11,9 @@
  ?>
 
  <?php //Ajout ligne modifié
- if(isset($_GET['edit']) && isset($_GET['idasupr']))
- echo'<form method="GET"><td><input type="text" name="id" placeholder="'.$tenant['id'].'"></td>
-      <td><input type="date" name="date_" placeholder="'.$tenant['date'].'"></td>
-      <td><input type="text" name="type_" placeholder="'.$tenant['type'].'"></td>
-      <td><input type="text" name="floor_" placeholder="'.$tenant['floor'].'"></td>
-      <td><button type="submit" value="edit2" name="edit2">Envoyer</button></td></form>'
+ 
+ if(isset($_GET['edit']) && isset($_GET['idasupr'])){
+ editPro();}
  ?>
 
 

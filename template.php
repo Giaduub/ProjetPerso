@@ -19,7 +19,10 @@
         
     <body>
         <?php require ('headerView.php') ?>
-        <h1>Mon panneau d'administration</h1>
+        <div class="container">
+        <div class="row justify-content-center">
+        <h1 class="" >Mon panneau d'administration</h1>
+        </div></div>
         
         <?= $content ?>
 

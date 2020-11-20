@@ -23,6 +23,19 @@ function showAll(){
     $tenant=$pdoStat->fetchAll();
     return $tenant;
 }
+
+function editPro(){
+    $sql='SELECT * FROM `action`WHERE id='.$_GET['idasupr'].'';
+	$query=dbConnect()->prepare($sql);
+	$query->execute();
+    $reply = $query->fetch(PDO::FETCH_ASSOC);
+    
+    echo'<form method="GET"><td><input type="text" name="id" placeholder="'.$reply['id'].'"></td>
+      <td><input type="date" name="date_" placeholder="'.$reply['date'].'"></td>
+      <td><input type="text" name="type_" placeholder="'.$reply['type'].'"></td>
+      <td><input type="text" name="floor_" placeholder="'.$reply['floor'].'"></td>
+      <td><button type="submit" value="edit2" name="edit2">Envoyer</button></td></form>';
+}
  
 // Fonction d'ajout des tâches
 
@@ -142,8 +155,10 @@ function editTask(){
      } else {
          echo 'Veuillez recommencer svp.';
      }
+     
     }
 
+    
  // Table tâche à effectué 
  function taskShow(){
     $pdoStat = dbConnect()->prepare('SELECT * FROM `task` ORDER BY `date` ');
